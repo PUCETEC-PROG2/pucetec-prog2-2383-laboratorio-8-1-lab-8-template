@@ -13,7 +13,8 @@
             <ul class="list-group">
                 {% for pokemon in pokemons %}
                 <li class="list-group-item">
-                    <a href="{{pokemon}}">{{ pokemon | capfirst }}</a>
+                    <a href="pokemon/{{pokemon.id}}">{{ pokemon | capfirst }}</a>
+                    <p>{{pokemon.type}}</p>
                 </li>
                 {% endfor %}
             </ul>

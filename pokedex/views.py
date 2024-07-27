@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.template import loader
 
 from pokedex.forms import PokemonForm
@@ -33,9 +33,27 @@ def add_pokemon(request):
             return redirect('pokedex:index')
     else:
         form = PokemonForm()
-        
-    return render(request, 'add_pokemon.html', {'form': form})
 
+    return render(request, 'pokemon_form.html', {'form': form})
+
+@login_required
+def edit_pokemon(request, id):
+    pokemon = get_object_or_404(Pokemon, pk=id)
+    if request.method == 'POST':
+        form = PokemonForm(request.POST, request.FILES, instance=pokemon)
+        if form.is_valid():
+            form.save()
+            return redirect('pokedex:index')
+    else:
+        form = PokemonForm(instance=pokemon)
+
+    return render(request, 'pokemon_form.html', {'form': form})
+
+@login_required
+def delete_pokemon(request, id):
+    pokemon = get_object_or_404(Pokemon, pk=id)
+    pokemon.delete()
+    return redirect('pokedex:index')
 
 class CustomLoginView(LoginView):
     template_name = "login.html"

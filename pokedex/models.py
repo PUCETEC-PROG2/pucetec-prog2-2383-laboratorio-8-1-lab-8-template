@@ -19,6 +19,7 @@ class Pokemon(models.Model):
         ('P', 'Planta'),
         ('E', 'Eléctrico'),
         ('L', 'Lagartija'),
+        ('Fu', 'Futblista'),
     }
     type = models.CharField(max_length=30, null=False, choices=POKEMON_TYPES)
     weight = models.IntegerField(null=False, default=1)

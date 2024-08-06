@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}ENTRENADORES{% endblock title %}
+{% block content %}
+<p>Has elegido el entrenador: <strong>{{ trainer | capfirst }}</strong></p>
+<h3>Características:</h3>
+    <ul>
+        <li>Nombre: {{ trainer.first_name }}</li>
+        <li>Apellido: {{ trainer.last_name }}</li>
+        <li>Nacimiento: {{ trainer.birt_date }}</li>
+        <li>Nivel: {{ trainer.level }}</li>
+    </ul>
+{% endblock content %}

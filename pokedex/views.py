@@ -27,7 +27,7 @@ def pokemon(request, pokemon_id):
 
 def trainer(request, trainer_id):
     trainer = Trainer.objects.get(id=trainer_id)
-    template = loader.get_template('display_pokemon.html')
+    template = loader.get_template('display_trainer.html')
     context = {
         'trainer': trainer
     }
